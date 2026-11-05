@@ -1,216 +1,829 @@
-/* 1. Reset and theme */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+
+/* ==================================
+   1. GLOBAL SETTINGS
+================================== */
 
 :root {
-    --pink: #fce4ec;
-    --cream: #fff8f0;
-    --rose: #c76b86;
-    --deep-rose: #a64d68;
-    --text: #6d4c50;
+  --pink: #e9a4b8;
+  --dark-pink: #bd6685;
+  --deep-pink: #98506b;
+  --cream: #fffaf4;
+  --light-pink: #fff0f4;
+  --white: #ffffff;
+  --text: #59434b;
+  --muted: #947b84;
+  --shadow: 0 12px 35px rgba(189, 102, 133, 0.12);
 }
 
-/* 2. Page layout */
-body {
-    min-height: 100vh;
-    font-family: "Poppins", sans-serif;
-    color: var(--text);
-    background: var(--cream);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
+
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: "Poppins", sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+/* ==================================
+   2. NAVIGATION
+================================== */
+
+.navbar {
+  width: 100%;
+  min-height: 75px;
+  padding: 15px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 250, 244, 0.95);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #f5e4e8;
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  font-family: "Dancing Script", cursive;
+  font-size: 29px;
+  font-weight: 700;
+  color: var(--deep-pink);
+}
+
+.logo span {
+  color: var(--pink);
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: 13px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--dark-pink);
+}
+
+
+/* ==================================
+   3. COMMON SECTION STYLES
+================================== */
+
+.section {
+  padding: 90px 8%;
+}
+
+.section-heading {
+  max-width: 700px;
+  margin: 0 auto 50px;
+  text-align: center;
+}
+
+.eyebrow {
+  color: var(--dark-pink);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.section-heading h2,
+.final-section h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(30px, 5vw, 43px);
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 12px 0;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+
+/* ==================================
+   4. BUTTONS
+================================== */
+
+.primary-btn,
+.secondary-btn {
+  display: inline-block;
+  padding: 13px 28px;
+  border: none;
+  border-radius: 40px;
+  background: var(--dark-pink);
+  color: var(--white);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+  background: var(--deep-pink);
+  transform: translateY(-3px);
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--deep-pink);
+  outline-offset: 4px;
+}
+
+
+/* ==================================
+   5. HERO SECTION
+================================== */
 
 .hero {
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 70px 20px;
-    background: linear-gradient(135deg, #fff8f0, #fce4ec, #f8dce5);
+  min-height: 88vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 70px 20px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 20%, #ffe0e9, transparent 35%),
+    radial-gradient(circle at 85% 75%, #f9e4d7, transparent 35%),
+    linear-gradient(135deg, #fff0f4, #fffaf4);
 }
 
-/* 3. Main content */
 .hero-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 650px;
-    text-align: center;
+  max-width: 750px;
+  position: relative;
+  z-index: 2;
 }
 
-.small-heading {
-    margin-bottom: 20px;
-    color: var(--rose);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 4px;
+.hero h1 {
+  font-family: "Dancing Script", cursive;
+  font-size: clamp(52px, 9vw, 90px);
+  line-height: 1.3;
+  margin: 20px 0;
+  color: var(--deep-pink);
 }
 
-h1 {
-    margin-bottom: 20px;
-    color: var(--deep-rose);
-    font-family: "Playfair Display", serif;
-    font-size: clamp(38px, 7vw, 65px);
-    font-weight: 600;
+.hero-heart {
+  color: var(--pink);
 }
 
-.heart {
-    display: inline-block;
-    color: #e75480;
-    animation: heartbeat 1.3s infinite;
+.hero-description {
+  max-width: 500px;
+  margin: 0 auto 30px;
+  color: var(--muted);
+  font-size: 15px;
 }
 
-.subtitle {
-    max-width: 480px;
-    margin: 0 auto 30px;
-    font-size: 15px;
-    line-height: 1.9;
+.hero-decoration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-/* 4. Button */
-.primary-btn {
-    border: 0;
-    border-radius: 50px;
-    padding: 15px 28px;
-    background: var(--rose);
-    color: #fff;
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+.hero-decoration span {
+  position: absolute;
+  color: rgba(189, 102, 133, 0.2);
+  font-size: 45px;
 }
 
-.primary-btn:hover {
-    transform: translateY(-4px);
-    background: var(--deep-rose);
-    box-shadow: 0 8px 20px #c76b8640;
+.hero-decoration span:nth-child(1) {
+  top: 20%;
+  left: 12%;
 }
 
-.primary-btn:focus-visible {
-    outline: 3px solid var(--deep-rose);
-    outline-offset: 4px;
+.hero-decoration span:nth-child(2) {
+  bottom: 20%;
+  right: 15%;
 }
 
-/* 5. Letter reveal */
-.letter {
-    margin-top: 35px;
-    padding: 30px;
-    border-radius: 20px;
-    background: #ffffffd9;
-    box-shadow: 0 10px 35px #a64d6815;
-    text-align: left;
-    line-height: 1.9;
-    animation: fadeIn 0.8s ease;
+.hero-decoration span:nth-child(3) {
+  top: 25%;
+  right: 18%;
+  font-size: 25px;
 }
 
-.letter h2 {
-    margin-bottom: 15px;
-    color: var(--deep-rose);
-    font-family: "Dancing Script", cursive;
-    font-size: 35px;
+
+/* ==================================
+   6. LETTER SECTION
+================================== */
+
+.letter-section {
+  background: var(--cream);
 }
 
-.letter p {
-    margin-bottom: 15px;
+.letter-wrapper {
+  max-width: 680px;
+  margin: auto;
+  text-align: center;
+  background: var(--white);
+  padding: 45px 30px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
 }
 
-.letter .signature {
-    margin-bottom: 0;
-    color: var(--deep-rose);
-    font-family: "Dancing Script", cursive;
-    font-size: 23px;
+/* Envelope */
+
+.envelope {
+  width: 150px;
+  height: 100px;
+  position: relative;
+  margin: 10px auto 30px;
+  background: #e7a0b5;
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(189, 102, 133, 0.2);
+  transition: transform 0.5s ease;
 }
 
-.hidden {
-    display: none;
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #d989a5;
 }
 
-/* 6. Floating hearts */
+.envelope-front {
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  border-bottom: 55px solid #f1bdcc;
+  z-index: 2;
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  border-top: 55px solid #f6cad6;
+  transform-origin: top;
+  transition: transform 0.5s ease;
+  z-index: 3;
+}
+
+.envelope-heart {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  right: 0;
+  color: white;
+  font-size: 30px;
+  z-index: 4;
+  text-align: center;
+}
+
+/* Open envelope */
+
+.envelope.open {
+  transform: translateY(-5px);
+}
+
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+}
+
+.letter-content {
+  margin-top: 35px;
+  padding: 35px;
+  background: var(--light-pink);
+  border-radius: 12px;
+  text-align: left;
+  animation: fadeIn 0.6s ease;
+}
+
+.letter-date {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.letter-content h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 32px;
+  margin: 18px 0;
+  color: var(--deep-pink);
+}
+
+.letter-content p {
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.letter-signature {
+  text-align: right;
+  font-family: "Dancing Script", cursive;
+  font-size: 22px !important;
+  color: var(--deep-pink);
+  margin-top: 25px;
+}
+
+
+/* ==================================
+   7. MEMORIES SECTION
+================================== */
+
+.memories-section {
+  background: var(--light-pink);
+}
+
+/* Featured memory layout */
+
+.featured-memory {
+  max-width: 950px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 65px;
+  flex-wrap: wrap;
+  padding: 35px;
+  background: var(--white);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+
+/* Photograph frame */
+
+.photo-frame {
+  width: 290px;
+  position: relative;
+  padding: 12px 12px 20px;
+  background: #fffdfb;
+  border: 1px solid #f1d6df;
+  border-radius: 5px;
+  box-shadow: 0 8px 22px rgba(80, 50, 60, 0.12);
+  transform: rotate(-2deg);
+  transition: transform 0.4s ease;
+}
+
+.photo-frame:hover {
+  transform: rotate(0deg) scale(1.03);
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  height: 340px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 3px;
+}
+
+.photo-caption {
+  display: block;
+  text-align: center;
+  padding-top: 12px;
+  font-family: "Dancing Script", cursive;
+  font-size: 21px;
+  color: var(--deep-pink);
+}
+
+.photo-decoration {
+  position: absolute;
+  top: -19px;
+  right: -17px;
+  z-index: 2;
+  font-size: 36px;
+  color: var(--dark-pink);
+}
+
+.featured-message {
+  flex: 1;
+  min-width: 230px;
+  max-width: 390px;
+}
+
+.memory-number {
+  color: var(--dark-pink);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.featured-message h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 28px;
+  line-height: 1.4;
+  margin: 15px 0;
+}
+
+.featured-message p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.featured-message .handwritten {
+  margin-top: 20px;
+  font-family: "Dancing Script", cursive;
+  font-size: 24px;
+  color: var(--deep-pink);
+}
+
+
+/* Special moment cards */
+
+.moments-heading {
+  text-align: center;
+  margin: 75px 0 30px;
+}
+
+.moments-heading h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 27px;
+  font-weight: 500;
+}
+
+.moments-heading p {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 7px;
+}
+
+.moments-grid {
+  max-width: 1050px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.moment-card {
+  background: var(--white);
+  border-radius: 17px;
+  padding: 30px 23px;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.moment-card:hover {
+  transform: translateY(-7px);
+}
+
+.moment-icon {
+  display: block;
+  color: var(--dark-pink);
+  font-size: 34px;
+  margin-bottom: 12px;
+}
+
+.moment-label {
+  color: var(--dark-pink);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.moment-card h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 21px;
+  margin: 10px 0;
+}
+
+.moment-card p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+
+/* ==================================
+   8. APPRECIATION SECTION
+================================== */
+
+.appreciation-section {
+  background: var(--cream);
+}
+
+.appreciation-grid {
+  max-width: 1000px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.appreciation-card {
+  padding: 35px 22px;
+  background: var(--white);
+  border-radius: 17px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.appreciation-card:hover {
+  transform: translateY(-6px);
+}
+
+.appreciation-card span {
+  color: var(--dark-pink);
+  font-size: 35px;
+}
+
+.appreciation-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  margin: 10px 0;
+}
+
+.appreciation-card p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+
+/* ==================================
+   9. APOLOGY SECTION
+================================== */
+
+.apology-section {
+  background: #fff0f4;
+}
+
+.apology-card {
+  max-width: 760px;
+  margin: auto;
+  padding: 45px;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.apology-heart {
+  font-size: 42px;
+  color: var(--dark-pink);
+  margin-bottom: 15px;
+}
+
+.apology-card p {
+  margin: 17px 0;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.apology-opening {
+  font-family: "Dancing Script", cursive;
+  font-size: 29px !important;
+  color: var(--deep-pink) !important;
+}
+
+.apology-card h3 {
+  font-family: "Dancing Script", cursive;
+  font-size: 34px;
+  color: var(--deep-pink);
+  margin-top: 28px;
+}
+
+
+/* ==================================
+   10. FINAL SECTION
+================================== */
+
+.final-section {
+  padding: 100px 20px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 10% 20%, #ffe0e9, transparent 35%),
+    linear-gradient(135deg, #fff0f4, #fffaf4);
+}
+
+.final-section p {
+  max-width: 520px;
+  margin: 20px auto;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.final-heart {
+  color: var(--dark-pink);
+  font-size: 65px;
+  margin: 20px 0;
+  animation: heartbeat 1.6s infinite;
+}
+
+.final-section h3 {
+  font-family: "Dancing Script", cursive;
+  color: var(--deep-pink);
+  font-size: 34px;
+}
+
+.back-to-top {
+  display: inline-block;
+  margin-top: 35px;
+  color: var(--dark-pink);
+  font-size: 13px;
+  border-bottom: 1px solid var(--pink);
+  padding-bottom: 3px;
+}
+
+
+/* ==================================
+   11. FOOTER
+================================== */
+
+footer {
+  background: #f8e3e9;
+  padding: 22px;
+  text-align: center;
+  color: var(--deep-pink);
+  font-size: 12px;
+}
+
+
+/* ==================================
+   12. FLOATING HEARTS
+================================== */
+
 .hearts-container {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 200;
 }
 
 .floating-heart {
-    position: absolute;
-    bottom: -30px;
-    color: #e78ba5;
-    opacity: 0;
-    animation: floatUp linear forwards;
-}
-
-/* 7. Footer */
-.footer-text {
-    position: absolute;
-    bottom: 20px;
-    z-index: 2;
-    color: #a87582;
-    font-size: 11px;
-    text-align: center;
-}
-
-/* 8. Animations */
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.25); }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  position: absolute;
+  bottom: -30px;
+  color: rgba(189, 102, 133, 0.5);
+  animation: floatUp 7s linear forwards;
 }
 
 @keyframes floatUp {
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 0;
-    }
-    20% { opacity: 0.5; }
-    100% {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-    }
+  from {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-110vh) rotate(35deg);
+    opacity: 0;
+  }
 }
 
-/* 9. Responsive layout */
-@media (max-width: 600px) {
-    .letter {
-        padding: 22px;
-    }
 
-    .subtitle {
-        font-size: 14px;
-    }
+/* ==================================
+   13. OTHER ANIMATIONS
+================================== */
 
-    .primary-btn {
-        padding: 13px 22px;
-    }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
 
-    .small-heading {
-        letter-spacing: 2px;
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* 10. Respect reduced-motion preferences */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+
+/* ==================================
+   14. RESPONSIVE DESIGN
+================================== */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 15px 5%;
+  }
+
+  .nav-links {
+    gap: 13px;
+  }
+
+  .nav-links a {
+    font-size: 11px;
+  }
+
+  .section {
+    padding: 70px 6%;
+  }
+
+  .featured-memory {
+    gap: 35px;
+    padding: 25px 18px;
+  }
+
+  .featured-message {
+    text-align: center;
+  }
+
+  .moments-grid,
+  .appreciation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .moment-card,
+  .appreciation-card {
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .navbar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-links {
+    gap: 17px;
+  }
+
+  .hero {
+    min-height: 75vh;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .letter-wrapper {
+    padding: 30px 17px;
+  }
+
+  .letter-content {
+    padding: 22px;
+  }
+
+  .photo-frame {
+    width: min(100%, 270px);
+  }
+
+  .photo-frame img {
+    height: 320px;
+  }
+
+  .apology-card {
+    padding: 30px 20px;
+  }
+
+  .final-section {
+    padding: 75px 20px;
+  }
+}
+
+
+/* ==================================
+   15. ACCESSIBILITY
+================================== */
+
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
 }

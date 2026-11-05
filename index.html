@@ -1,61 +1,365 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#fff8f0">
-    <meta name="description" content="A little heartfelt message for Miss Shreya.">
-    <title>A Little Something for Shreya ❤️</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#fff5f5">
+  <meta name="description" content="A little heartfelt page made for Miss Shreya.">
 
-    <link rel="stylesheet" href="css/style.css">
+  <title>For Miss Shreya ♡</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- JavaScript -->
+  <script src="js/script.js" defer></script>
 </head>
+
 <body>
-    <main class="hero">
-        <div class="hearts-container" id="heartsContainer" aria-hidden="true"></div>
 
-        <div class="hero-content">
-            <p class="small-heading">A LITTLE SOMETHING FOR YOU</p>
+  <!-- Floating decorative hearts -->
+  <div class="hearts-container" id="heartsContainer" aria-hidden="true"></div>
 
-            <h1>Hey, Miss Shreya <span class="heart" aria-hidden="true">♥</span></h1>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <a href="#home" class="logo">For Shreya <span>♡</span></a>
 
-            <p class="subtitle">
-                Some feelings are difficult to express in words,
-                but today I want to try.
-            </p>
+    <div class="nav-links">
+      <a href="#letter">My Letter</a>
+      <a href="#memories">Memories</a>
+      <a href="#apology">My Apology</a>
+    </div>
+  </nav>
 
-            <button id="openLetterBtn" class="primary-btn"
-                    type="button" aria-expanded="false" aria-controls="letter">
-                Open My Little Letter ❤️
-            </button>
 
-            <section id="letter" class="letter hidden" aria-hidden="true">
-                <h2>Dear Shreya,</h2>
+  <main>
 
-                <p>
-                    Sometimes, we fail to express what our hearts truly feel.
-                    Sometimes, our words and actions don't reflect how much
-                    someone means to us.
-                </p>
+    <!-- 1. Hero Section -->
+    <section class="hero" id="home">
 
-                <p>
-                    I created this little space because there are things
-                    I genuinely want you to know.
-                </p>
+      <div class="hero-content">
 
-                <p class="signature">
-                    With sincerity and warmth,<br>
-                    Someone who truly appreciates you.
-                </p>
-            </section>
+        <span class="eyebrow">A little page, a lot of feelings</span>
+
+        <h1>
+          Hey, Miss Shreya
+          <span class="hero-heart">♡</span>
+        </h1>
+
+        <p class="hero-description">
+          If I could put my feelings into words,
+          this little corner of the internet would be
+          where I would begin.
+        </p>
+
+        <a href="#letter" class="primary-btn">
+          There's something for you ↓
+        </a>
+
+      </div>
+
+      <div class="hero-decoration" aria-hidden="true">
+        <span>♡</span>
+        <span>✿</span>
+        <span>♡</span>
+      </div>
+
+    </section>
+
+
+    <!-- 2. Letter Section -->
+    <section class="section letter-section" id="letter">
+
+      <div class="section-heading">
+        <span class="eyebrow">Words from my heart</span>
+        <h2>A Little Letter for You</h2>
+        <p>Some things are easier to write than to say.</p>
+      </div>
+
+      <div class="letter-wrapper">
+
+        <div class="envelope" id="envelope">
+          <div class="envelope-back"></div>
+          <div class="envelope-flap"></div>
+          <div class="envelope-front"></div>
+          <div class="envelope-heart">♡</div>
         </div>
 
-        <p class="footer-text">Made with sincerity, just for you.</p>
-    </main>
+        <button
+          class="secondary-btn"
+          id="letterButton"
+          aria-expanded="false"
+          aria-controls="letterContent"
+        >
+          Open My Letter
+        </button>
 
-    <script src="js/script.js"></script>
+        <article class="letter-content" id="letterContent" hidden>
+
+          <span class="letter-date">A little note, written with care</span>
+
+          <h3>Dear Miss Shreya,</h3>
+
+          <p>
+            There are some people who make ordinary moments
+            feel a little more beautiful. You are one of
+            those people to me.
+          </p>
+
+          <p>
+            I may not always find the perfect words, but
+            I hope you know that your presence has brought
+            warmth and happiness into my days.
+          </p>
+
+          <p>
+            I wanted to create something small, something
+            thoughtful, just to remind you that you are
+            appreciated.
+          </p>
+
+          <p class="letter-signature">
+            With warmth and sincerity,<br>
+            Someone who wishes you happiness ♡
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- 3. Memories Section -->
+    <section class="section memories-section" id="memories">
+
+      <div class="section-heading">
+        <span class="eyebrow">Little pieces of happiness</span>
+        <h2>Our Beautiful Memories</h2>
+
+        <p>
+          Not every special moment needs a photograph.
+          Some are remembered by the heart.
+        </p>
+      </div>
+
+
+      <!-- Main Photograph -->
+      <div class="featured-memory">
+
+        <div class="photo-frame">
+          <span class="photo-decoration">♡</span>
+
+          <img
+            src="assets/images/shreya.jpg"
+            alt="A special photograph of Shreya"
+          >
+
+          <span class="photo-caption">
+            A moment worth remembering
+          </span>
+        </div>
+
+        <div class="featured-message">
+
+          <span class="memory-number">A MEMORY TO TREASURE</span>
+
+          <h3>Some pictures speak without words.</h3>
+
+          <p>
+            A photograph can capture a moment, but the
+            feelings attached to it are something the
+            heart remembers in its own beautiful way.
+          </p>
+
+          <p class="handwritten">
+            A little moment, a lasting smile. ♡
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Special Moments -->
+      <div class="moments-heading">
+        <h3>Little Moments, Beautiful Feelings</h3>
+        <p>Some memories live beyond photographs.</p>
+      </div>
+
+      <div class="moments-grid">
+
+        <article class="moment-card">
+          <span class="moment-icon">✿</span>
+          <span class="moment-label">The little things</span>
+
+          <h4>Simple Conversations</h4>
+
+          <p>
+            Sometimes, even an ordinary conversation
+            becomes a beautiful part of the day.
+          </p>
+        </article>
+
+
+        <article class="moment-card">
+          <span class="moment-icon">♡</span>
+          <span class="moment-label">A special feeling</span>
+
+          <h4>Unexpected Smiles</h4>
+
+          <p>
+            Those little moments that bring a smile
+            without needing any particular reason.
+          </p>
+        </article>
+
+
+        <article class="moment-card">
+          <span class="moment-icon">✧</span>
+          <span class="moment-label">Always appreciated</span>
+
+          <h4>Beautiful Memories</h4>
+
+          <p>
+            The moments that remind us how meaningful
+            even the smallest connections can be.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- 4. Appreciation Section -->
+    <section class="section appreciation-section">
+
+      <div class="section-heading">
+        <span class="eyebrow">A few things I appreciate</span>
+        <h2>What Makes You Special</h2>
+      </div>
+
+      <div class="appreciation-grid">
+
+        <article class="appreciation-card">
+          <span>♡</span>
+          <h3>Your Smile</h3>
+          <p>
+            A smile that can make an ordinary moment
+            feel a little brighter.
+          </p>
+        </article>
+
+        <article class="appreciation-card">
+          <span>✿</span>
+          <h3>Your Presence</h3>
+          <p>
+            The kind of presence that makes some
+            moments worth remembering.
+          </p>
+        </article>
+
+        <article class="appreciation-card">
+          <span>✧</span>
+          <h3>Your Uniqueness</h3>
+          <p>
+            There is something wonderful about being
+            simply and genuinely yourself.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- 5. Apology Section -->
+    <section class="section apology-section" id="apology">
+
+      <div class="section-heading">
+        <span class="eyebrow">Something I truly mean</span>
+        <h2>My Sincere Apology</h2>
+      </div>
+
+      <article class="apology-card">
+
+        <div class="apology-heart">♡</div>
+
+        <p class="apology-opening">
+          Dear Miss Shreya,
+        </p>
+
+        <p>
+          If my words or actions have hurt you in any way,
+          I want to sincerely apologise.
+        </p>
+
+        <p>
+          I understand that an apology is more than just
+          saying the words "I'm sorry". It means
+          acknowledging my mistakes, understanding your
+          feelings, and trying to become better.
+        </p>
+
+        <p>
+          I cannot change what has already happened,
+          but I can learn from it. I never wanted to
+          make you feel unimportant or unappreciated.
+        </p>
+
+        <p>
+          I am not writing this to put pressure on you
+          or to expect anything in return. I simply
+          wanted to express what is in my heart.
+        </p>
+
+        <h3>
+          I am truly sorry. ♡
+        </h3>
+
+      </article>
+
+    </section>
+
+
+    <!-- 6. Final Message -->
+    <section class="final-section">
+
+      <span class="eyebrow">Before you go...</span>
+
+      <h2>A Little Wish for You</h2>
+
+      <p>
+        May your days be filled with genuine smiles,
+        peaceful moments, beautiful dreams and all
+        the happiness you deserve.
+      </p>
+
+      <div class="final-heart">♡</div>
+
+      <h3>Stay wonderful, Miss Shreya.</h3>
+
+      <a href="#home" class="back-to-top">
+        Back to the beginning ↑
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    <p>Made with sincerity, care and a little courage ♡</p>
+  </footer>
+
 </body>
 </html>

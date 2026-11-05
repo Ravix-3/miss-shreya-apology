@@ -1,74 +1,87 @@
-// Select the elements we need from the HTML document.
-const openLetterBtn = document.getElementById("openLetterBtn");
-const letter = document.getElementById("letter");
+
+/* ==================================
+   1. LETTER INTERACTION
+================================== */
+
+const letterButton = document.getElementById("letterButton");
+const letterContent = document.getElementById("letterContent");
+const envelope = document.getElementById("envelope");
+
+letterButton.addEventListener("click", () => {
+
+  // Check whether the letter is currently closed
+  const isClosed = letterContent.hidden;
+
+  if (isClosed) {
+
+    // Open the letter
+    letterContent.hidden = false;
+
+    envelope.classList.add("open");
+
+    letterButton.textContent = "Close My Letter";
+
+    letterButton.setAttribute("aria-expanded", "true");
+
+  } else {
+
+    // Close the letter
+    letterContent.hidden = true;
+
+    envelope.classList.remove("open");
+
+    letterButton.textContent = "Open My Letter";
+
+    letterButton.setAttribute("aria-expanded", "false");
+
+  }
+
+});
+
+
+/* ==================================
+   2. FLOATING HEART ANIMATION
+================================== */
+
 const heartsContainer = document.getElementById("heartsContainer");
 
-// Show or hide the letter when the button is clicked.
-openLetterBtn.addEventListener("click", () => {
-    const isHidden = letter.classList.toggle("hidden");
+const reducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+).matches;
 
-    // Keep the button label and accessibility state in sync.
-    openLetterBtn.textContent = isHidden
-        ? "Open My Little Letter ❤️"
-        : "Close My Letter 💌";
-
-    openLetterBtn.setAttribute("aria-expanded", String(!isHidden));
-    letter.setAttribute("aria-hidden", String(isHidden));
-
-    if (!isHidden) {
-        letter.scrollIntoView({
-            behavior: "smooth",
-            block: "nearest"
-        });
-    }
-});
-
-// Create one decorative floating heart.
 function createHeart() {
-    const heart = document.createElement("span");
 
-    heart.classList.add("floating-heart");
-    heart.textContent = "♥";
-    heart.setAttribute("aria-hidden", "true");
+  // Don't animate if the visitor prefers reduced motion
+  if (reducedMotion) return;
 
-    heart.style.left = `${Math.random() * 100}%`;
-    heart.style.fontSize = `${Math.random() * 20 + 12}px`;
-    heart.style.animationDuration = `${Math.random() * 5 + 5}s`;
+  const heart = document.createElement("span");
 
-    heartsContainer.appendChild(heart);
+  heart.classList.add("floating-heart");
 
-    // Remove the element after its animation to prevent DOM clutter.
-    heart.addEventListener("animationend", () => {
-        heart.remove();
-    }, { once: true });
+  heart.textContent = "♡";
+
+  // Random horizontal position
+  heart.style.left = Math.random() * 100 + "vw";
+
+  // Random size
+  heart.style.fontSize =
+    Math.random() * 20 + 12 + "px";
+
+  // Random animation duration
+  heart.style.animationDuration =
+    Math.random() * 4 + 5 + "s";
+
+  heartsContainer.appendChild(heart);
+
+  // Remove the heart after its animation
+  heart.addEventListener("animationend", () => {
+    heart.remove();
+  });
+
 }
 
-// Avoid continuously animating hearts when reduced motion is preferred.
-const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-);
 
-let heartIntervalId;
-
-function startHeartAnimation() {
-    if (prefersReducedMotion.matches || heartIntervalId) return;
-
-    heartIntervalId = window.setInterval(createHeart, 700);
+// Create a new heart every 1200 milliseconds
+if (!reducedMotion) {
+  setInterval(createHeart, 1200);
 }
-
-function stopHeartAnimation() {
-    if (!heartIntervalId) return;
-
-    window.clearInterval(heartIntervalId);
-    heartIntervalId = undefined;
-}
-
-startHeartAnimation();
-prefersReducedMotion.addEventListener("change", () => {
-    if (prefersReducedMotion.matches) {
-        stopHeartAnimation();
-        heartsContainer.replaceChildren();
-    } else {
-        startHeartAnimation();
-    }
-});
