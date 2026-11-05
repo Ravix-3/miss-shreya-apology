@@ -108,3 +108,45 @@ function createHeart() {
 if (!reducedMotion && heartsContainer) {
   setInterval(createHeart, 1200);
 }
+// ==================================Music Control==========/
+
+// ======================================
+// Background Music - Apology Website
+// ======================================
+
+const backgroundMusic = document.getElementById("backgroundMusic");
+
+// Set soft background volume (15%)
+backgroundMusic.volume = 0.15;
+
+// Attempt automatic playback
+async function playBackgroundMusic() {
+    try {
+        await backgroundMusic.play();
+        console.log("Background music started successfully.");
+    } catch (error) {
+        console.log("Autoplay blocked. Waiting for user interaction.");
+
+        // Start music after the visitor's first interaction
+        const startMusic = async () => {
+            try {
+                await backgroundMusic.play();
+
+                // Remove listeners after successful playback
+                document.removeEventListener("click", startMusic);
+                document.removeEventListener("touchstart", startMusic);
+                document.removeEventListener("keydown", startMusic);
+
+            } catch (err) {
+                console.log("Music playback failed:", err);
+            }
+        };
+
+        document.addEventListener("click", startMusic);
+        document.addEventListener("touchstart", startMusic);
+        document.addEventListener("keydown", startMusic);
+    }
+}
+
+// Start when the page loads
+window.addEventListener("load", playBackgroundMusic);
