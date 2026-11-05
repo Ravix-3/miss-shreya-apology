@@ -1,87 +1,110 @@
 
-/* ==================================
-   1. LETTER INTERACTION
-================================== */
+// ==================================
+// 1. LETTER INTERACTION + TYPEWRITER
+// ==================================
 
 const letterButton = document.getElementById("letterButton");
 const letterContent = document.getElementById("letterContent");
 const envelope = document.getElementById("envelope");
+const heartsContainer = document.getElementById("heartsContainer");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-letterButton.addEventListener("click", () => {
+const paragraphs = letterContent ? [...letterContent.querySelectorAll(".typewriter-text")] : [];
+let typingSession = 0;
 
-  // Check whether the letter is currently closed
-  const isClosed = letterContent.hidden;
+function wait(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
-  if (isClosed) {
+function resetLetter() {
+  paragraphs.forEach(paragraph => {
+    paragraph.textContent = "";
+    paragraph.classList.remove("typing");
+  });
+}
 
-    // Open the letter
-    letterContent.hidden = false;
+async function typeParagraph(paragraph, session) {
+  const text = paragraph.dataset.text ?? "";
 
-    envelope.classList.add("open");
+  paragraph.classList.add("typing");
 
-    letterButton.textContent = "Close My Letter";
+  for (const character of text) {
+    if (session !== typingSession) return;
 
-    letterButton.setAttribute("aria-expanded", "true");
-
-  } else {
-
-    // Close the letter
-    letterContent.hidden = true;
-
-    envelope.classList.remove("open");
-
-    letterButton.textContent = "Open My Letter";
-
-    letterButton.setAttribute("aria-expanded", "false");
-
+    paragraph.textContent += character;
+    await wait(18);
   }
 
-});
+  paragraph.classList.remove("typing");
+}
 
+async function typeLetter(session) {
+  if (reducedMotion) {
+    paragraphs.forEach(paragraph => {
+      paragraph.textContent = paragraph.dataset.text ?? "";
+    });
+    return;
+  }
 
-/* ==================================
-   2. FLOATING HEART ANIMATION
-================================== */
+  for (const paragraph of paragraphs) {
+    if (session !== typingSession) return;
 
-const heartsContainer = document.getElementById("heartsContainer");
+    await typeParagraph(paragraph, session);
 
-const reducedMotion = window.matchMedia(
-  "(prefers-reduced-motion: reduce)"
-).matches;
+    if (session !== typingSession) return;
+    await wait(450);
+  }
+}
+
+if (letterButton && letterContent && envelope) {
+  letterButton.addEventListener("click", async () => {
+    const isClosed = letterContent.hidden;
+
+    if (isClosed) {
+      typingSession++;
+      const currentSession = typingSession;
+
+      letterContent.hidden = false;
+      envelope.classList.add("open");
+      letterButton.textContent = "Close My Letter";
+      letterButton.setAttribute("aria-expanded", "true");
+
+      resetLetter();
+      await typeLetter(currentSession);
+    } else {
+      typingSession++;
+
+      letterContent.hidden = true;
+      envelope.classList.remove("open");
+      letterButton.textContent = "Open My Letter";
+      letterButton.setAttribute("aria-expanded", "false");
+
+      resetLetter();
+    }
+  });
+}
+
+// ==================================
+// 2. FLOATING HEART ANIMATION
+// ==================================
 
 function createHeart() {
-
-  // Don't animate if the visitor prefers reduced motion
-  if (reducedMotion) return;
+  if (reducedMotion || !heartsContainer) return;
 
   const heart = document.createElement("span");
-
   heart.classList.add("floating-heart");
-
   heart.textContent = "♡";
-
-  // Random horizontal position
   heart.style.left = Math.random() * 100 + "vw";
-
-  // Random size
-  heart.style.fontSize =
-    Math.random() * 20 + 12 + "px";
-
-  // Random animation duration
-  heart.style.animationDuration =
-    Math.random() * 4 + 5 + "s";
+  heart.style.fontSize = Math.random() * 20 + 12 + "px";
+  heart.style.animationDuration = Math.random() * 4 + 5 + "s";
 
   heartsContainer.appendChild(heart);
 
-  // Remove the heart after its animation
   heart.addEventListener("animationend", () => {
     heart.remove();
   });
-
 }
 
-
-// Create a new heart every 1200 milliseconds
-if (!reducedMotion) {
+if (!reducedMotion && heartsContainer) {
   setInterval(createHeart, 1200);
 }

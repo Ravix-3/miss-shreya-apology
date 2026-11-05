@@ -827,3 +827,79 @@ footer {
   }
 
 }
+
+/* ==================================
+   16. LETTER TYPEWRITER EFFECT
+================================== */
+
+.letter-content {
+  line-height: 1.9;
+  transform-origin: top;
+}
+
+.letter-content h3 {
+  margin-bottom: 25px;
+}
+
+.typewriter-text {
+  min-height: 1.5em;
+  white-space: pre-line;
+}
+
+/* Typing cursor */
+
+.typewriter-text.typing::after {
+  content: "|";
+  display: inline-block;
+  margin-left: 3px;
+  color: var(--dark-pink);
+  animation: cursorBlink 0.7s infinite;
+}
+
+/* Smooth paragraph appearance */
+
+.typewriter-text {
+  animation: paragraphReveal 0.5s ease both;
+}
+
+@keyframes cursorBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes paragraphReveal {
+  from {
+    opacity: 0.4;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Signature styling */
+
+.letter-signature {
+  white-space: pre-line;
+  text-align: right;
+  font-family: "Dancing Script", cursive;
+  font-size: 22px !important;
+  color: var(--deep-pink);
+  margin-top: 30px !important;
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-text.typing::after {
+    animation: none;
+  }
+}
+
